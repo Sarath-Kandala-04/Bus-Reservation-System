@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html>
+  <h1><font color="Indigo" SARABHI BUS</h1>
+  <h5>
+    <div style="position: relative; left: 15px; top: 30px">
+      Freedom to go Anywhere, Anytime
+    </div>
+  </h5>
+  <style>
+    h1 {
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      justify-content: center;
+      margin-top: 50px;
+    }
+
+    label {
+      margin-right: 10px;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    button[type="button"] {
+      padding: 5px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button[type="button"] {
+      background-color: #b6722e;
+      color: rgb(3, 18, 40);
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    button[type="button"]:hover {
+      background-color: #09e71c;
+    }
+
+    #result {
+      margin-top: 30px;
+    }
+    /* Global styles */
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      font-size: 36px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #927272;
+      border-radius: 5px;
+    }
+
+    /* Form styles */
+    form {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    label {
+      margin-right: 10px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    button[type="submit"] {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    button[type="submit"] {
+      background-color: #4caf50;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #4caf50;
+    }
+
+    /* Table styles */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+    }
+
+    th,
+    td {
+      padding: 10px;
+      text-align: left;
+      border: 1px solid #cccccc;
+    }
+
+    th {
+      background-color: #eee;
+      font-size: 18px;
+    }
+
+    td {
+      font-size: 16px;
+    }
+
+    /* Alert styles */
+    .alert {
+      padding: 10px;
+      background-color: #f44336;
+      color: white;
+      font-weight: bold;
+      margin-bottom: 20px;
+      border-radius: 5px;
+    }
+    body {
+      background-color: #ffffff; /* Replace with the color code of your choice */
+    }
+
+    body {
+      background-image: url("HD-wallpaper-mercedes-benz-tourismo-passenger-bus-new-green-transportation-of-passengers-concepts-buses-mercedes.jpg");
+      background-repeat: repeat;
+      background-size: cover;
+    }
+  </style>
+
+  <body>
+    <h1>Bus Reservation System</h1>
+    <form>
+      <label for="from">From:</label>
+      <input type="text" id="from" name="from" placeholder="Enter origin" />
+      <label for="to">To:</label>
+      <input type="text" id="to" name="to" placeholder="Enter destination" />
+      <label for="date">Date:</label>
+      <input type="date" id="date" name="date" />
+      <button type="button" onclick="search()">Search Buses</button>
+    </form>
+    <div id="result"></div>
+    <script src="script.js"></script>
+
+    <script>
+      function search() {
+        // Get the user inputs
+        var from = document.getElementById("from").value;
+        var to = document.getElementById("to").value;
+        var date = document.getElementById("date").value;
+
+        // Construct the URL for the API call
+        var url =
+          "https://api.example.com/buses?from=" +
+          from +
+          "&to=" +
+          to +
+          "&date=" +
+          date;
+
+        // Make the API call
+        fetch(url)
+          .then((response) => response.json())
+          .then((data) => {
+            // Display the search results
+            var resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = "";
+            if (data.length > 0) {
+              var table = document.createElement("table");
+              var headerRow = table.insertRow();
+              var headerCell1 = headerRow.insertCell(0);
+              headerCell1.innerHTML = "Bus Name";
+              var headerCell2 = headerRow.insertCell(1);
+              headerCell2.innerHTML = "Departure Time";
+              var headerCell3 = headerRow.insertCell(2);
+              headerCell3.innerHTML = "Arrival Time";
+              for (var i = 0; i < data.length; i++) {
+                var row = table.insertRow();
+                var cell1 = row.insertCell(0);
+                cell1.innerHTML = data[i].name;
+                var cell2 = row.insertCell(1);
+                cell2.innerHTML = data[i].departureTime;
+                var cell3 = row.insertCell(2);
+                cell3.innerHTML = data[i].arrivalTime;
+              }
+              resultDiv.appendChild(table);
+            } else {
+              resultDiv.innerHTML = "No buses found";
+            }
+          })
+          .catch((error) => console.log(error));
+      }
+    </script>
+  </body>
+</html>
