@@ -1,3 +1,11 @@
+body {
+  background-image: url('brsimg.jpg'); /* Replace 'your-background-image.jpg' with the path to your background image */
+  background-size: cover;
+  background-position: center;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
 h1 {
   text-align: center;
 }
