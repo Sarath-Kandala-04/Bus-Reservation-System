@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bus Reservation System</title>
+    <link rel="stylesheet" type="text/css" href="brs.css">
+  </head>
+  <body>
+    <h1>Bus Reservation System</h1>
+    <form>
+      <label for="from">From:</label>
+      <input type="text" id="from" name="from" placeholder="Enter origin">
+      <label for="to">To:</label>
+      <input type="text" id="to" name="to" placeholder="Enter destination">
+      <label for="date">Date:</label>
+      <input type="date" id="date" name="date">
+      <button type="button" onclick="search()">Search Buses</button>
+    </form>
+    <div id="result"></div>
+    <script src="brs.js"></script>
+  </body>
+</html>
